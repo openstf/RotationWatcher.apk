@@ -8,6 +8,6 @@ Unfortunately, the private APIs we need access to include an abstract class whic
 
 ## How to generate the JAR
 
-Copy one of the `layoutlib.jar` files in your Android SDK folder to the `libs` folder in this module.You can then optionally run `./strip.sh` to remove any unnecessary content from it, slimming the archive down considerably.
+Copy one of the `layoutlib.jar` files in your Android SDK folder to the `libs` folder in this module. You can then optionally run `./strip.sh` to remove any unnecessary content from it, slimming the archive down considerably.
 
 The current base file is `$ANDROID_SDK/platforms/android-21/data/layoutlib.jar`.
