@@ -18,22 +18,29 @@ Like mentioned earlier, RotationWatcher is a command line application. It does n
 
 1. Build the project. See above.
 2. Choose a module based on your platform. While the mobile module should run on most platforms as-is, wear and tv version are also provided just in case.
-```bash
-cd mobile
-```
+
+    ```bash
+    cd mobile
+    ```
+
 3. Install the application.
-```bash
-adb install ./build/outputs/apk/*-debug.apk
-```
+
+    ```bash
+    adb install ./build/outputs/apk/*-debug.apk
+    ```
+    
 4. Figure out where the application was installed. Note that the location can and will change between every install, so always rerun this after installing.
-```bash
-path=$(adb shell pm path jp.co.cyberagent.stf.rotationwatcher | tr -d '\r' | cut -d: -f 2)
-```
+ 
+    ```bash
+    apk_path=$(adb shell pm path jp.co.cyberagent.stf.rotationwatcher | tr -d '\r' | cut -d: -f 2)
+    ```
+
 5. Run the application. Note that there's only ONE COMMAND to run, both the export and the exec run inside the device (the semicolon is escaped). The `export CLASSPATH` is required for app_process to do its magic.
-```bash
-adb shell export CLASSPATH="$path"\; \
-exec app_process /system/bin jp.co.cyberagent.stf.rotationwatcher.RotationWatcher
-```
+
+    ```bash
+    adb shell export CLASSPATH="$apk_path"\; \
+    exec app_process /system/bin jp.co.cyberagent.stf.rotationwatcher.RotationWatcher
+    ```
 
 Alternatively, you may use the `./run.sh` script in each module to do the same.
 
