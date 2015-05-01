@@ -1,6 +1,6 @@
 # RotationWatcher.apk
 
-RotationWatcher is a simple command-line application for detecting rotation changes on Android. While fairly useless by itself, it can be used together with other components such as [minicap](TODO LINK) for screen capturing.
+RotationWatcher is a simple command-line application for detecting rotation changes on Android. While fairly useless by itself, it can be used together with other components such as [minicap](https://github.com/openstf/minicap) for screen capturing.
 
 ## Features
 
