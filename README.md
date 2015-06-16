@@ -17,7 +17,7 @@ Build with `./gradlew assembleDebug`.
 Like mentioned earlier, RotationWatcher is a command line application. It does not have a launcher activity, or any activity for that matter. To run the application and read its output, the following steps must be performed:
 
 1. Build the project. See above.
-2. Choose a module based on your platform. While the mobile module should run on most platforms as-is, wear and tv version are also provided just in case.
+2. Choose a module based on your platform. While the mobile module should run on most platforms as-is, wear and tv versions are also provided just in case.
 
     ```bash
     cd mobile
@@ -28,9 +28,9 @@ Like mentioned earlier, RotationWatcher is a command line application. It does n
     ```bash
     adb install ./build/outputs/apk/*-debug.apk
     ```
-    
+
 4. Figure out where the application was installed. Note that the location can and will change between every install, so always rerun this after installing.
- 
+
     ```bash
     apk_path=$(adb shell pm path jp.co.cyberagent.stf.rotationwatcher | tr -d '\r' | cut -d: -f 2)
     ```
