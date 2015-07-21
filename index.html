@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Rotationwatcher.apk by openstf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Rotationwatcher.apk</h1>
+      <h2 class="project-tagline">Small CLI app for tracking Android rotation changes in real time.</h2>
+      <a href="https://github.com/openstf/RotationWatcher.apk" class="btn">View on GitHub</a>
+      <a href="https://github.com/openstf/RotationWatcher.apk/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/openstf/RotationWatcher.apk/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="rotationwatcherapk" class="anchor" href="#rotationwatcherapk" aria-hidden="true"><span class="octicon octicon-link"></span></a>RotationWatcher.apk</h1>
+
+<p>RotationWatcher is a simple command-line application for detecting rotation changes on Android. While fairly useless by itself, it can be used together with other components such as <a href="https://github.com/openstf/minicap">minicap</a> for screen capturing.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Supports Android 2.3.3+</li>
+<li>Directly runnable as a command line application via adb shell</li>
+<li>Tracks and outputs current rotation in degrees to stdout</li>
+</ul>
+
+<h2>
+<a id="building" class="anchor" href="#building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building</h2>
+
+<p>Build with <code>./gradlew assembleDebug</code>.</p>
+
+<h2>
+<a id="running" class="anchor" href="#running" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running</h2>
+
+<p>Like mentioned earlier, RotationWatcher is a command line application. It does not have a launcher activity, or any activity for that matter. To run the application and read its output, the following steps must be performed:</p>
+
+<ol>
+<li>Build the project. See above.</li>
+<li>
+<p>Choose a module based on your platform. While the mobile module should run on most platforms as-is, wear and tv versions are also provided just in case.</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c1">cd</span> mobile</pre></div>
+</li>
+<li>
+<p>Install the application.</p>
+
+<div class="highlight highlight-bash"><pre>adb install ./build/outputs/apk/<span class="pl-k">*</span>-debug.apk</pre></div>
+</li>
+<li>
+<p>Figure out where the application was installed. Note that the location can and will change between every install, so always rerun this after installing.</p>
+
+<div class="highlight highlight-bash"><pre>apk_path=<span class="pl-s"><span class="pl-pds">$(</span>adb shell pm path jp.co.cyberagent.stf.rotationwatcher <span class="pl-k">|</span> tr -d <span class="pl-s"><span class="pl-pds">'</span>\r<span class="pl-pds">'</span></span> <span class="pl-k">|</span> cut -d: -f 2<span class="pl-pds">)</span></span></pre></div>
+</li>
+<li>
+<p>Run the application. Note that there's only ONE COMMAND to run, both the export and the exec run inside the device (the semicolon is escaped). The <code>export CLASSPATH</code> is required for app_process to do its magic.</p>
+
+<div class="highlight highlight-bash"><pre>adb shell <span class="pl-k">export</span> CLASSPATH=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$apk_path</span><span class="pl-pds">"</span></span><span class="pl-cce">\;</span> \
+<span class="pl-c1">exec</span> app_process /system/bin jp.co.cyberagent.stf.rotationwatcher.RotationWatcher</pre></div>
+</li>
+</ol>
+
+<p>Alternatively, you may use the <code>./run.sh</code> script in each module to do the same.</p>
+
+<h2>
+<a id="good-to-know" class="anchor" href="#good-to-know" aria-hidden="true"><span class="octicon octicon-link"></span></a>Good to know</h2>
+
+<p>This application requires access to some private and/or hidden APIs. See <a href="shim/README.md">shim/README.md</a> for details.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>See <a href="LICENSE">LICENSE</a>.</p>
+
+<p>Copyright © CyberAgent, Inc. All Rights Reserved.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/openstf/RotationWatcher.apk">Rotationwatcher.apk</a> is maintained by <a href="https://github.com/openstf">openstf</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-64458786-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
+
